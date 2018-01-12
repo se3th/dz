@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Departments{% endblock %}
+
+{% block javascript %}
+  <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {$('.loading').show();},
+      onAfterPageLoad: function ($items) {$('.loading').hide();}
+    });
+  </script>
+{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Departments</h1>
+    </div>
+
+    <div class="infinite-container">
+        {% for department in departments_list%}
+            <div class=" infinite-item">
+                <div class="jumbotron">
+                    <div class="media-left ">
+                        <a href="#">
+                            <img class="media-object" src="{{ department.picture }} " alt="{{ department.name }}" width=450>
+                        </a>
+                    </div>
+                    <div class="media-body ">
+                        <h2>{{ department.name }}</h2>
+                        <p>{{ department.description }}</p>
+                        <p><a class="btn btn-secondary btn-lg" href="department/{{ department.id }}" role="button">Learn more</a> </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <ul class="text-right fixed-bottom">
+        <button type="button" class="btn btn-secondary ">
+            <a href="{% url 'add_department_url' %}">Add Department</a>
+        </button>
+
+    </ul>
+
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
+
+    {% if page_obj.has_next %}
+        <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
+    {% endif %}
+
+{% endblock %}
+
+
+

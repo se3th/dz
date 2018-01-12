@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'infinite.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <style>
+        body {
+          padding-top: 60px;
+          background-color: white;
+        }
+        .jumbotron {
+            margin: 20px -30px;
+            padding: 20px 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="#">
+           <img src=".." alt="DZ#" style="width:48px;">
+        </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+             <ul class="navbar-nav mr-auto">
+                 <li class="nav-item active">
+                     <a class="nav-link" href="{% url 'main_url' %}">Main <span class="sr-only">(current)</span></a>
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'departments_url'%}">Departments</a>
+                </li>
+            </ul>
+            <span class="badge badge-pill badge-secondary" >{{user.first_name}} {{user.last_name}}</span>
+            <button type="button" class="btn-secondary"><a href="{% url 'authorization' %}">Login</a></button>
+            <button type="button" class="btn-secondary"><a href="{% url 'logout' %}">Logout</a></button>
+
+        </div>
+    </nav>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+
+    {% block javascript %}{% endblock %}
+</body>
+</html>

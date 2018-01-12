@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h1>{{ department.name }}</h1>
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" src="/{{ department.picture }} " alt="{{ department.name }}" height=250>
+        </a>
+    </div>
+    <div class="media-body">
+        <div class="jumbotron">
+            <p>{{ department.description }}</p>
+            <span class="badge badge-pill badge-danger">{{ a }}</span>
+                <form action="#" method="get">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-secondary btn-lg" value="Join in" name="mybtn">
+                </form>
+        </div>
+    </div>
+    <div class="list-group">
+      <a  class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Members of the {{ department.name }}</h5>>
+        </div>
+          {% for member in member_list %}
+                <p class="mb-1"> {{ member.name }} {{ member.lastname }}</p>
+          {% empty %}
+              No members
+          {% endfor %}
+      </a>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+
+

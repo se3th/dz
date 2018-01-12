@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Sing up{% endblock %}
+
+{% block body %}
+    <div class="container text-center">
+        <header>
+            <h2>Sing up</h2>
+        </header>
+        <div style="width: 50%; margin-right: auto; margin-left: auto">
+            <form class="form-signin" action="{% url 'registration' %}" method="POST">
+                {% csrf_token %}
+                <div class="from-group row">
+                    <label class="col-md-4">Login</label>
+                <div class=col-md-8">{{ form.username }}</div>
+                </div>
+                <div class="from-group row">
+                    <label class="col-md-4">Password</label>
+                <div class=col-md-8">{{ form.password1 }}</div>
+                </div>
+                <div class="from-group row">
+                    <label class="col-md-4">Confirm your password</label>
+                <div class=col-md-8">{{ form.password2 }}</div>
+                </div>
+                <div class="from-group row">
+                    <label class="col-md-4">First name</label>
+                <div class=col-md-8">{{ form.first_name }}</div>
+                </div>
+                <div class="from-group row">
+                    <label class="col-md-4">Last name</label>
+                <div class=col-md-8">{{ form.last_name }}</div>
+                </div>
+                <div class="from-group row">
+                    <label class="col-md-4">E-mail</label>
+                <div class=col-md-8">{{ form.email }}</div>
+                </div>
+                <!-- first_name last_name email-->
+                <button class="btn-primary" type="submit">Sing up</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
